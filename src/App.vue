@@ -65,11 +65,28 @@ import MainComponent from './components/MainComponent.vue';
           store.cardList = '';
           console.log(res.data.results)
         })
+      },
+      setLanguage() {
+        for (let i = 0; i < store.cardList.length; i++) {
+            if(store.cardList[i].original_language === 'en') {
+                store.cardList[i].original_language = '/images/en.png'
+            }
+            else if(store.cardList[i].original_language === 'es') {
+                store.cardList[i].original_language = '/images/es.png'
+            }
+            else if(store.cardList[i].original_language === 'ko') {
+                store.cardList[i].original_language = '/images/ko.png'
+            }
+            console.log(store.cardList[i].original_language)
+        }      
       }
     },
     mounted() {
       this.getCards()
-    }
+      setTimeout(() => {
+        this.setLanguage()
+      }, 100)
+    },
   }
 </script>
 

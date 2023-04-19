@@ -4,8 +4,15 @@
             <div class="card-image p-3">
                 <img :src="store.baseUrlImage + store.wImg + card.poster_path" alt="">
             </div>
-            <div class="card-body">
-                <h6>{{ card.title }}</h6>
+            <div class="card-body d-flex flex-column">
+                <h6>{{ card.original_title }}</h6>
+                <div class="language d-flex align-items-center">
+                    <span class="fst-italic">Lingua originale:</span>
+                    <div class="box-flag ms-2 d-flex align-items-center">
+                        <img :src="card.original_language" alt="flag-language">
+                    </div>
+                </div>
+                <span class="fst-italic">Voto: {{ card.vote_average }}</span>
             </div>
         </div>
     </div>
@@ -17,10 +24,10 @@ import {store} from '../data/store.js';
         name: 'CardComponent',
         props: ['card'],
         data() {
-      return {
-        store,
-      }
-    },
+            return {
+                store,
+            }
+        },
     }
 </script>
 
@@ -28,6 +35,18 @@ import {store} from '../data/store.js';
     .card-image{
         img{
             width: 100%;
+        };
+    }
+    .box-flag{
+        height: 20px;
+        width: 30px;
+        margin-top: 3px;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 3px;
         };
     }
 </style>
