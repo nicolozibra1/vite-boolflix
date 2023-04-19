@@ -27,6 +27,8 @@ import { store } from '../data/store';
         methods: {
             setSearch() {
                 this.$emit('searchChange');
+                this.$emit('searchMovie');
+                this.$emit('searchTv')
             }
         }
     }

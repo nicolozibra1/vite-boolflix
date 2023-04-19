@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent @searchChange="getCards" />
+  <HeaderComponent @searchChange="getCards" @searchMovie="getMovie" @searchTv="getTv" />
   <MainComponent />
 </template>
 
@@ -22,12 +22,14 @@ import MainComponent from './components/MainComponent.vue';
     },
     methods: {
       getCards() {
-        if(store.search.query.length > 0) {
-          this.url = store.baseUrl + 'search/movie?' + store.myKey
-        }
-        else {
-          this.url = store.baseUrl + 'movie/popular?' + store.myKey;
-        }
+        this.url = store.baseUrl + 'movie/popular?' + store.myKey; //popular
+        axios.get(this.url).then((res) => {
+          store.cardList = res.data.results
+          console.log(res.data.results)
+        })
+      },
+      getMovie() {
+        this.url = store.baseUrl + 'search/movie?' + store.myKey // movie
         let options = {};
         let params = {}
         for (let key in store.search) {
@@ -39,15 +41,30 @@ import MainComponent from './components/MainComponent.vue';
         options.params = params;
         }
         axios.get(this.url, options).then((res) => {
-          store.cardList = res.data.results
+          store.research = true;
+          store.movieList = res.data.results;
+          store.cardList = '';
           console.log(res.data.results)
         })
-        // let image = store.baseUrlImage + store.wImg;
-        // axios.get(url).then((res) =>{
-        //   store.imgList = res.data
-        //   console.log(res.data)
-        // })
-        
+      },
+      getTv() {
+        this.url = store.baseUrl + 'search/tv?' + store.myKey // movie
+        let options = {};
+        let params = {}
+        for (let key in store.search) {
+          if (store.search[key]) {
+            params[key] = store.search[key]
+          }
+        }
+        if (Object.keys(params).length > 0) {
+        options.params = params;
+        }
+        axios.get(this.url, options).then((res) => {
+          store.research = true;
+          store.tvList = res.data.results;
+          store.cardList = '';
+          console.log(res.data.results)
+        })
       }
     },
     mounted() {
