@@ -1,0 +1,42 @@
+CHIAMATA ESEMPIO (https://api.themoviedb.org/3/movie/550?api_key=f51fd13bc875752d61e123c6554b6dab)
+
+
+UTILITA'
+° baseUrl: https://api.themoviedb.org/3/
+° myKey: f51fd13bc875752d61e123c6554b6dab
+° endpoint: axios generate
+° baseUrlImage: https://image.tmdb.org/t/p
+
+
+MILESTONE 1
+° Creare un template base con riferimento al sito di Netflix.
+° Creare un header contenente un logo ed aggiungere un Input di ricerca
+° Attraverso la searchBar inizializzare una chiamata API che ritorna gli elementi richiesti
+    - Utilizzare la baseUrl per effettuare le chiamate
+    - Obbligatorio aggiungere ad ogni chiamata la myKey
+    - Generare un endpoint dinamico utilizzando le Option{params} fornite da axios
+° Assicurarsi che i campi vuoti non vengano aggiunti al EndPoint, e minimizzare la possibiltà di errori di digitazione.
+° Generare due liste principali (film, serie TV) collegate tra loro dal campo di ricerca (es. Ricerca testo: "A" sia per lista Film sia per lista SerieTV)
+    - Per visualizzare l'immagine assicurarsi di utilizzare (baseUrlImage)
+
+MILESTONE 2
+° Creare un JumboTron (es. statico, slider, video)
+° Popolare la homapage con una chiamata API (mounted) e fornire liste (popular, top10, ecc.)
+° Dare possibilità al utente di avere una rapida visione dei dettagli principali del film/serieTv in MouseOver su ogni card generata.
+° Aggiungere al Header una Navbar con parametri ricerca predefiniti (es. Home, SerieTV, Film, Nuovi e Popolari ecc.)
+    - Al click inviare una chiamate API e ritornare ciò che è stato selezionato (es. solo film, solo serie)
+
+MILESTONE 3
+° Perferzionare il layout aggiungendo effetti (hover, animazioni, transizioni ecc.)
+° Creare un (?canvas) contenente info ed episodi al click sulla card selezionata
+° Creare una landing page di pre-accesso
+
+BONUS
+° Creare slider sulle liste (possibilmente ciclo dello slider infinito. Dal ultima torna alla prima e viceversa)
+° Dare la possibilità al utente di creare una lista preferiti (push in newArray)
+    - lavorare necessariamente con ID
+
+
+
+
+
