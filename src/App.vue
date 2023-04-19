@@ -46,6 +46,7 @@ import MainComponent from './components/MainComponent.vue';
           store.cardList = '';
           setTimeout(() => {
             this.setLanguage(store.movieList)
+            this.setVote(store.movieList)
           }, 100)
           console.log(res.data.results)
         })
@@ -68,6 +69,7 @@ import MainComponent from './components/MainComponent.vue';
           store.cardList = '';
           setTimeout(() => {
             this.setLanguage(store.tvList)
+            this.setVote(store.tvList)
           }, 100)
           console.log(res.data.results)
         })
@@ -93,12 +95,20 @@ import MainComponent from './components/MainComponent.vue';
           // PRINT
           list[i].original_language = 'https://flagcdn.com/32x24/' + list[i].original_language + '.png'
         }      
+      },
+      setVote(list) {
+        for (let i = 0; i < list.length; i++) {
+          let calcVote = list[i].vote_average * 0.5;
+          calcVote = Math.round(calcVote)
+          list[i].vote_average = '/images/vote-' + calcVote +'.png'
+        }
       }
     },
     mounted() {
       this.getCards()
       setTimeout(() => {
-        this.setLanguage(store.cardList)
+        this.setLanguage(store.cardList);
+        this.setVote(store.cardList)
       }, 100)
     },
   }

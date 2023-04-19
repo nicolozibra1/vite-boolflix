@@ -12,7 +12,13 @@
                         <img :src="card.original_language" alt="flag-language">
                     </div>
                 </div>
-                <span class="fst-italic">Voto: {{ card.vote_average }}</span>
+                <div class="vote d-flex align-items-center">
+                    <span class="fst-italic">Voto:</span>
+                    <div class="box-star ms-2 d-flex align-items-center">
+                        <img :src="card.vote_average" alt="">
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -47,6 +53,16 @@ import {store} from '../data/store.js';
             height: 100%;
             object-fit: cover;
             border-radius: 3px;
+        };
+    }
+    .box-star{
+        height: 25px;
+        width: 100px;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         };
     }
 </style>
