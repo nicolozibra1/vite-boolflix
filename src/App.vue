@@ -74,16 +74,24 @@ import MainComponent from './components/MainComponent.vue';
       },
       setLanguage(list) {
         for (let i = 0; i < list.length; i++) {
-            if(list[i].original_language === 'en') {
-                list[i].original_language = '/images/en.png'
-            }
-            else if(list[i].original_language === 'es') {
-                list[i].original_language = '/images/es.png'
-            }
-            else if(list[i].original_language === 'ko') {
-                list[i].original_language = '/images/ko.png'
-            }
-            console.log(list[i].original_language)
+          // EXCEPTIONS 
+          if(list[i].original_language === 'en'){
+            list[i].original_language = 'gb'
+          }
+          else if(list[i].original_language === 'ko'){
+            list[i].original_language = 'kr'
+          }
+          else if(list[i].original_language === 'ja'){
+            list[i].original_language = 'jp'
+          }
+          else if(list[i].original_language === 'hi'){
+            list[i].original_language = 'in'
+          }
+          else if(list[i].original_language === 'zh'){
+            list[i].original_language = 'ch'
+          }
+          // PRINT
+          list[i].original_language = 'https://flagcdn.com/32x24/' + list[i].original_language + '.png'
         }      
       }
     },
