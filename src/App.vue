@@ -44,6 +44,9 @@ import MainComponent from './components/MainComponent.vue';
           store.research = true;
           store.movieList = res.data.results;
           store.cardList = '';
+          setTimeout(() => {
+            this.setLanguage(store.movieList)
+          }, 100)
           console.log(res.data.results)
         })
       },
@@ -63,28 +66,31 @@ import MainComponent from './components/MainComponent.vue';
           store.research = true;
           store.tvList = res.data.results;
           store.cardList = '';
+          setTimeout(() => {
+            this.setLanguage(store.tvList)
+          }, 100)
           console.log(res.data.results)
         })
       },
-      setLanguage() {
-        for (let i = 0; i < store.cardList.length; i++) {
-            if(store.cardList[i].original_language === 'en') {
-                store.cardList[i].original_language = '/images/en.png'
+      setLanguage(list) {
+        for (let i = 0; i < list.length; i++) {
+            if(list[i].original_language === 'en') {
+                list[i].original_language = '/images/en.png'
             }
-            else if(store.cardList[i].original_language === 'es') {
-                store.cardList[i].original_language = '/images/es.png'
+            else if(list[i].original_language === 'es') {
+                list[i].original_language = '/images/es.png'
             }
-            else if(store.cardList[i].original_language === 'ko') {
-                store.cardList[i].original_language = '/images/ko.png'
+            else if(list[i].original_language === 'ko') {
+                list[i].original_language = '/images/ko.png'
             }
-            console.log(store.cardList[i].original_language)
+            console.log(list[i].original_language)
         }      
       }
     },
     mounted() {
       this.getCards()
       setTimeout(() => {
-        this.setLanguage()
+        this.setLanguage(store.cardList)
       }, 100)
     },
   }
