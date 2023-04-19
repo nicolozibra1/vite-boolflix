@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent />
+  <HeaderComponent @searchChange="getCards" />
   <MainComponent />
 </template>
 
@@ -17,12 +17,28 @@ import MainComponent from './components/MainComponent.vue';
     data() {
       return {
         store,
+        url: ''
       }
     },
     methods: {
       getCards() {
-        let url = store.baseUrl + 'movie/popular?' + store.myKey;
-        axios.get(url).then((res) => {
+        if(store.search.query.length > 0) {
+          this.url = store.baseUrl + 'search/movie?' + store.myKey
+        }
+        else {
+          this.url = store.baseUrl + 'movie/popular?' + store.myKey;
+        }
+        let options = {};
+        let params = {}
+        for (let key in store.search) {
+          if (store.search[key]) {
+            params[key] = store.search[key]
+          }
+        }
+        if (Object.keys(params).length > 0) {
+        options.params = params;
+        }
+        axios.get(this.url, options).then((res) => {
           store.cardList = res.data.results
           console.log(res.data.results)
         })

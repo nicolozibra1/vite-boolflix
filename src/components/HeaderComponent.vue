@@ -4,8 +4,8 @@
             <img src="/images/logo-main.png" alt="">
         </div>
         <div class="search-box d-flex justify-content-center align-items-center">
-            <form>
-                <input type="search" placeholder="Titoli, Generi, A-Z">
+            <form @submit.prevent="setSearch">
+                <input type="search" placeholder="Titoli, Generi, A-Z" v-model.trim="store.search.query">
                 <button type="submit" class="btn bg-none"><i class="fa-solid fa-search text-white"></i></button>
             </form> 
         </div>
@@ -13,8 +13,22 @@
 </template>
 
 <script>
+import { store } from '../data/store';
     export default {
-        name: 'HeaderComponent'
+        name: 'HeaderComponent',
+        data() {
+            return {
+                store,
+                searchOption: [
+                    'movie'
+                ]
+            }
+        },
+        methods: {
+            setSearch() {
+                this.$emit('searchChange');
+            }
+        }
     }
 </script>
 
@@ -38,6 +52,7 @@
                 background-color: rgb(32, 32, 32);
                 border: 1px solid darkgray;
                 border-radius: 5px;
+                color: white;
             }
         }
     }
