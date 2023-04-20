@@ -100,6 +100,9 @@ import MainComponent from './components/MainComponent.vue';
         for (let i = 0; i < list.length; i++) {
           let calcVote = list[i].vote_average * 0.5;
           calcVote = Math.round(calcVote)
+          if(calcVote === 0){
+            calcVote = 1
+          }
           list[i].vote_average = '/images/vote-' + calcVote +'.png'
         }
       }
