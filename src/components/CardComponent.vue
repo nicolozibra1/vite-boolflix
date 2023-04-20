@@ -5,7 +5,7 @@
                 <img :src="store.baseUrlImage + store.wImg + card.poster_path" alt="">
             </div>
             <div class="card-body d-flex flex-column">
-                <h6>{{ card.original_title }}</h6>
+                <h6>{{ card.title }} {{ card.name }}</h6>
                 <div class="language d-flex align-items-center">
                     <span class="fst-italic">Lingua originale:</span>
                     <div class="box-flag ms-2 d-flex align-items-center">
