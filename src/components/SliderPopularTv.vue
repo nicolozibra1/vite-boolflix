@@ -1,9 +1,9 @@
 <template>
     <div class="title-section">
-        <span>Most Popular Movie</span>
+        <span>Most Popular Tv</span>
     </div>
     <div class="thumbnail thumbanail-scroll container-fluid" >
-        <div class="nail px-2 py-4 ms-3" v-for="(thumb, index) in store.cardList" :key="index">
+        <div class="nail px-2 py-4 ms-3" v-for="(thumb, index) in store.popularTv" :key="index">
             <img :src="store.baseUrlImage + store.wImg + thumb.poster_path" alt="" :class="{active: currentIndex === index}" @mouseover="stopScroll">
         </div>
     </div>
@@ -15,13 +15,12 @@
             <i class="fa-solid fa-chevron-right fs-3"></i>
         </div>
     </div>
-    
 </template>
 
 <script>
 import {store} from '../data/store.js';
     export default {
-        name: 'SliderComponent',
+        name: 'SliderPopularTv',
         props: ['thumb'],
         data() {
             return {
@@ -36,11 +35,11 @@ import {store} from '../data/store.js';
                 this.currentIndex = this.currentIndex > 5 ? 0 : this.currentIndex + 1;
             },
             prevSlide() {
-                this.currentIndex === 0 ? this.currentIndex = store.cardList.length - 1 : this.currentIndex--;
+                this.currentIndex === 0 ? this.currentIndex = store.popularTv.length - 1 : this.currentIndex--;
             },   
             startScroll() {
                 this.autoscroll = setInterval(() => {
-                    this.currentIndex = (this.currentIndex + 1) % store.cardList.length;
+                    this.currentIndex = (this.currentIndex + 1) % store.popularTv.length;
                     if (this.currentIndex > 6) {
                         this.currentIndex = 0;
                     }
@@ -64,7 +63,7 @@ template{
 span{
     color: white;
     position: absolute;
-    top: 90px;
+    top: 550px;
     left: 20px;
     z-index: 3;
     background-color: red;
@@ -74,7 +73,6 @@ span{
     font-size: 0.9rem;
 }
 .thumbnail{
-    margin-top: 50px;
     height: 400px;
     background-color: black;
     display: flex;
@@ -83,6 +81,7 @@ span{
     overflow-x: hidden;
     overflow-y: hidden;
     z-index: 2;
+    margin-top: 120px;
 }
 .nail{
     width: 100%;

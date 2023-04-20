@@ -2,6 +2,7 @@ import {reactive} from 'vue';
 
 export const store = reactive({
     cardList: [],
+    popularTv: [],
     movieList: [],
     tvList: [],
     baseUrl: 'https://api.themoviedb.org/3/',
