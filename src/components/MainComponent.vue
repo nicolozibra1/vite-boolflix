@@ -2,7 +2,7 @@
     <main>
         <div class="container-fluid">
             <div class="popular" v-if="!store.research">
-                <div class="row popular-movie d-flex flex-wrap mt-2">
+                <div class="row popular-movie d-flex flex-wrap">
                     <!-- <SliderComponent /> GOOD IDEA BUT NOT WORK (FIX REQUIRED)--> 
                     <SliderComponent2 />
                 </div>
@@ -50,7 +50,10 @@ import SliderPopularTv from './SliderPopularTv.vue';
 </script>
 
 <style lang="scss" scoped>
-    .popular-tv{
-        margin-top: 150px;
+    .popular{
+        .row{
+            margin-top: 100px;
+            margin-bottom: 250px;
+        } 
     }
 </style>

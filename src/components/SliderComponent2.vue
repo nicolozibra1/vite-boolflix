@@ -61,10 +61,13 @@ import {store} from '../data/store.js';
 template{
     position: relative;
 }
+.title-section{
+    position: relative;
+}
 span{
     color: white;
     position: absolute;
-    top: 90px;
+    top: -38px;
     left: 20px;
     z-index: 3;
     background-color: red;
@@ -74,7 +77,6 @@ span{
     font-size: 0.9rem;
 }
 .thumbnail{
-    margin-top: 50px;
     height: 400px;
     background-color: black;
     display: flex;
@@ -92,7 +94,7 @@ span{
 .box-arrow{
     height: 100px;
     z-index: 2;
-    margin-top: 140px;
+    margin-top: 100px;
 }
 .arrow{
     color: white;

@@ -60,10 +60,13 @@ import {store} from '../data/store.js';
 template{
     position: relative;
 }
+.title-section{
+    position: relative;
+}
 span{
     color: white;
     position: absolute;
-    top: 550px;
+    top: -38px;
     left: 20px;
     z-index: 3;
     background-color: red;
@@ -81,7 +84,6 @@ span{
     overflow-x: hidden;
     overflow-y: hidden;
     z-index: 2;
-    margin-top: 120px;
 }
 .nail{
     width: 100%;
