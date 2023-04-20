@@ -4,12 +4,12 @@
             <img :src="store.baseUrlImage + store.wImg + thumb.poster_path" alt="" :class="{active: currentIndex === index}" @mouseover="stopScroll">
         </div>
     </div>
-    <div class="box-arrow d-flex justify-content-between">
-        <div class="arrow prev" @click="prevSlide">
-            <i class="fa-solid fa-circle-arrow-left"></i>
+    <div class="box-arrow d-flex justify-content-between align-items-center px-0">
+        <div class="arrow prev d-flex justify-content-center align-items-center" @click="prevSlide">
+            <i class="fa-solid fa-chevron-left fs-3"></i>
         </div>
-        <div class="arrow next d-flex justify-content-end" @click="nextSlide">
-            <i class="fa-solid fa-circle-arrow-right"></i>
+        <div class="arrow next d-flex justify-content-center align-items-center" @click="nextSlide">
+            <i class="fa-solid fa-chevron-right fs-3"></i>
         </div>
     </div>
     
@@ -26,10 +26,6 @@ import {store} from '../data/store.js';
                 currentIndex: 0,
                 autoscroll: "",
                 visible: false,
-                page1: [],
-                page2: [],
-                page3: [],
-                newCard:[]
             }
         },
         methods: {
@@ -78,13 +74,21 @@ template{
     flex-direction: row;
 }
 .box-arrow{
+    height: 100px;
     z-index: 2;
-    margin-top: 180px;
+    margin-top: 140px;
 }
 .arrow{
     color: white;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.13);
     border: none;
+    height: 100px;
+    width: 40px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.212);
+    }
 }
 .nail img.active{
     border-radius: 10px;
