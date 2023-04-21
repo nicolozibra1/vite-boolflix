@@ -19,5 +19,6 @@ export const store = reactive({
     search: {
         query: ''
     },
-    research: false
+    research: false,
+    log: false
 })

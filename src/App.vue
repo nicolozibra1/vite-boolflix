@@ -1,18 +1,21 @@
 <template>
-  <HeaderComponent @searchTopMovie="getTopMovie" @searchPopularTv="getPopularTv" @searchChange="getCards" @searchMovie="getMovie" @searchTv="getTv" />
-  <HeroComponent />
-  <MainComponent />
+  <IntroComponent v-if="!store.log"/>
+  <HeaderComponent v-if="store.log" @searchTopMovie="getTopMovie" @searchPopularTv="getPopularTv" @searchChange="getCards" @searchMovie="getMovie" @searchTv="getTv" />
+  <HeroComponent v-if="store.log" />
+  <MainComponent v-if="store.log" />
 </template>
 
 <script>
 import {store} from './data/store.js';
 import axios from 'axios';
+import IntroComponent from './components/IntroComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import HeroComponent from './components/HeroComponent.vue';
 import MainComponent from './components/MainComponent.vue';
   export default {
     name: 'App',
     components: {
+      IntroComponent,
       HeaderComponent,
       MainComponent,
       HeroComponent
@@ -20,7 +23,7 @@ import MainComponent from './components/MainComponent.vue';
     data() {
       return {
         store,
-        url: ''
+        url: '',
       }
     },
     methods: {
