@@ -21,14 +21,14 @@
             </div>
 
 
-            <div class="movie" v-if="store.research">
-                <h1>Film</h1>
+            <div class="movie p-5" v-if="store.research">
+                <h3 class="text-white text-uppercase text-center">movie</h3>
                 <div class="row d-flex flex-wrap mt-2">
                     <CardComponent v-for="(card, index) in store.movieList" :card="card" :key="card.id"/>
                 </div>
             </div>
-            <div class="tv" v-if="store.research">
-                <h1>Serie Tv</h1>
+            <div class="tv p-5" v-if="store.research">
+                <h3 class="text-white text-uppercase text-center">tv</h3>
                 <div class="row d-flex flex-wrap mt-2">
                     <CardComponent v-for="(card, index) in store.tvList" :card="card" :key="card.id"/>
                 </div>

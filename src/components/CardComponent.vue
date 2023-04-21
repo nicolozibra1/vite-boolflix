@@ -7,13 +7,13 @@
             <div class="card-body d-flex flex-column">
                 <h6>{{ card.title }} {{ card.name }}</h6>
                 <div class="language d-flex align-items-center">
-                    <span class="fst-italic">Lingua originale:</span>
+                    <span class="fst-italic">Language:</span>
                     <div class="box-flag ms-2 d-flex align-items-center">
                         <img :src="card.original_language" alt="flag-language">
                     </div>
                 </div>
                 <div class="vote d-flex align-items-center">
-                    <span class="fst-italic">Voto:</span>
+                    <span class="fst-italic">Vote:</span>
                     <div class="box-star ms-2 d-flex align-items-center">
                         <img :src="card.vote_average" alt="">
                     </div>
@@ -37,6 +37,14 @@ import {store} from '../data/store.js';
 </script>
 
 <style lang="scss" scoped>
+.card{
+    background-color: transparent;
+    color: white;
+    &:hover{
+        cursor: pointer;
+        scale: 1.1;
+    }
+}
     .card-image{
         img{
             width: 100%;
