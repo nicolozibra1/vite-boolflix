@@ -1,6 +1,6 @@
 <template>
     <div class="box-video">
-        <video autoplay muted loop id="trailer" ref="videoPlayer">
+        <video autoplay loop id="trailer" ref="videoPlayer">
             <source src="../../public/videos/creed3-trailer.mp4" type="video/mp4">
         </video>
     </div>
@@ -18,7 +18,7 @@
         data() {
             return {
                 videoPaused: false,
-                muted: true
+                muted: false
             };
         },
         methods: {
