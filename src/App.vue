@@ -1,5 +1,6 @@
 <template>
   <HeaderComponent @searchTopMovie="getTopMovie" @searchPopularTv="getPopularTv" @searchChange="getCards" @searchMovie="getMovie" @searchTv="getTv" />
+  <HeroComponent />
   <MainComponent />
 </template>
 
@@ -7,12 +8,14 @@
 import {store} from './data/store.js';
 import axios from 'axios';
 import HeaderComponent from './components/HeaderComponent.vue';
+import HeroComponent from './components/HeroComponent.vue';
 import MainComponent from './components/MainComponent.vue';
   export default {
     name: 'App',
     components: {
       HeaderComponent,
-      MainComponent
+      MainComponent,
+      HeroComponent
     },
     data() {
       return {
