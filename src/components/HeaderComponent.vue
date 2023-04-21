@@ -28,6 +28,7 @@ import { store } from '../data/store';
             setSearch() {
                 this.$emit('searchChange');
                 this.$emit('searchPopularTv');
+                this.$emit('searchTopMovie');
                 this.$emit('searchMovie');
                 this.$emit('searchTv')
             }

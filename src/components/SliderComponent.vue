@@ -1,14 +1,19 @@
 <template>
-    <div class="thumbnail container-fluid">
-        <div class="nail p-2" v-for="(thumb, index) in store.cardList" :key="index">
-            <img :src="store.baseUrlImage + store.wImg + thumb.poster_path" alt="" :class="{active: currentIndex === index}">
+    <div class="slider" @mouseover="stopScroll" @mouseleave="startScroll">
+        <div class="thumbnail container-fluid" ref="box">
+            <div class="nail px-2 py-4" v-for="(thumb, index) in store.cardList" :key="index" @click="getInfoCard(index)">
+                <img :src="store.baseUrlImage + store.wImg + thumb.poster_path" alt="" :class="{active: currentIndex === index}">
+            </div>
         </div>
-    
-        <div class="arrow next" @click="nextSlide">
-            <i class="fa-solid fa-circle-arrow-right"></i>
+        <div class="box-arrow box-prev d-flex justify-content-between align-items-center px-0">
+            <div class="arrow prev d-flex justify-content-center align-items-center" @click="prevSlide">
+                <i class="fa-solid fa-chevron-left fs-3"></i>
+            </div>
         </div>
-        <div class="arrow prev" @click="prevSlide">
-            <i class="fa-solid fa-circle-arrow-left"></i>
+        <div class="box-arrow box-next d-flex justify-content-between align-items-center px-0">
+            <div class="arrow next d-flex justify-content-center align-items-center" @click="nextSlide">
+                <i class="fa-solid fa-chevron-right fs-3"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -24,83 +29,118 @@ import {store} from '../data/store.js';
                 currentIndex: 0,
                 autoscroll: "",
                 visible: false,
-                page1: [],
-                page2: [],
-                page3: [],
-                newCard:[]
             }
         },
         methods: {
             nextSlide() {
-                this.currentIndex === store.cardList.length - 1 ? this.currentIndex = 0 : this.currentIndex++
-                console.log(this.currentIndex)
-                 if(this.currentIndex === 7){
-                     for(let i = 0; i < 7; i++) {
-                         this.page1.push(store.cardList[i])
-                         store.cardList[i] = this.page1
-                    }
-                 this.page1[i] = this.visible
-                 }
-
-                // if(this.currentIndex === 13){
-                //     for(let i = 0; i < 13; i++) {
-                //         this.page2.push(store.cardList[i])
-                //         store.cardList[i] = this.page2
-                //     }
-                // this.page2 = this.visible
-                // }
+	            const element = this.$refs.box;
+	            element.scrollBy({
+		        left: 1200,
+		        behavior: "smooth",
+	            });
             },
+            
             prevSlide() {
-                this.currentIndex === 0 ? this.currentIndex = store.cardList.length - 1 : this.currentIndex--
+                const element = this.$refs.box;
+	            element.scrollBy({
+		        left: -1200,
+		        behavior: "smooth",
+	            });
+            },
+            restartSlide() {
+                const element = this.$refs.box;
+                element.scrollBy({
+                    left: -3600,
+                    behavior: "smooth",
+                })
             },
             startScroll() {
                 this.autoscroll = setInterval(() => {
                     this.currentIndex = (this.currentIndex + 1) % store.cardList.length;
-                }, 3000);
+                    if (this.currentIndex === 6 || this.currentIndex === 12 || this.currentIndex === 18) {
+                        this.nextSlide()
+                    }
+                    if(this.currentIndex === 17) {
+                        this.currentIndex = 0;
+                        this.restartSlide()
+                    }
+                }, 1500);
             },
             stopScroll() {
                 clearInterval(this.autoscroll);
                 this.isPaused = true;
-            }
+            },
+            getInfoCard(index) {
+                store.selected.splice(0, 1)
+                store.selected.push(store.cardList[index])
+                console.log(store.selected);
+                }
         },
+        
+        mounted() {
+            this.startScroll()
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+.slider{
+    position: relative;
+}
 .thumbnail{
     height: 400px;
     background-color: black;
     display: flex;
-    position: relative;
+    overflow: auto;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.thumbnail::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.thumbnail {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 .nail{
     width: 100%;
     display: flex;
     flex-direction: row;
+    &:hover img{
+        border-radius: 10px;
+        opacity:1;
+        scale: 1.1;
+        border: 1px solid white;
+        cursor: pointer;
+    }
+}
+.box-prev{
+    position: absolute;
+    top: 150px;
+    left: 0;
+}
+.box-next{
+    position: absolute;
+    top: 150px;
+    right: 0;
 }
 .arrow{
     color: white;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.226);
     border: none;
-    position: absolute;
-}
-.next{
-    top: 50%;
-    right:20px;
-    transform: translate(-50%, -50%);
-}
-.prev{
-    top: 50%;
-    left:20px;
-    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 40px;
+    cursor: pointer;
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.322);
+    }
 }
 .nail img.active{
-    border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 20px;
     opacity:1;
     scale: 1.1;
 }
 .nail img{
-    opacity: 40%;
+    opacity: 80%;
 }
 </style>

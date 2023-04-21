@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent @searchPopularTv="getPopularTv" @searchChange="getCards" @searchMovie="getMovie" @searchTv="getTv" />
+  <HeaderComponent @searchTopMovie="getTopMovie" @searchPopularTv="getPopularTv" @searchChange="getCards" @searchMovie="getMovie" @searchTv="getTv" />
   <MainComponent />
 </template>
 
@@ -32,6 +32,21 @@ import MainComponent from './components/MainComponent.vue';
         this.url = store.baseUrl + 'tv/popular?' + store.myKey; //popular
         axios.get(this.url).then((res) => {
           store.popularTv = res.data.results
+          setTimeout(() => {
+            this.setLanguage(store.popularTv)
+            this.setVote(store.popularTv)
+          }, 100)
+          console.log(res.data.results)
+        })
+      },
+      getTopMovie() {
+        this.url = store.baseUrl + 'movie/top_rated?' + store.myKey; //top rated movie
+        axios.get(this.url).then((res) => {
+          store.topMovie = res.data.results
+          setTimeout(() => {
+            this.setLanguage(store.topMovie)
+            this.setVote(store.topMovie)
+          }, 100)
           console.log(res.data.results)
         })
       },
@@ -117,6 +132,7 @@ import MainComponent from './components/MainComponent.vue';
     mounted() {
       this.getCards()
       this.getPopularTv()
+      this.getTopMovie()
       setTimeout(() => {
         this.setLanguage(store.cardList);
         this.setVote(store.cardList)

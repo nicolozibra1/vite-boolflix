@@ -3,7 +3,7 @@
         <span>Most Popular Movie</span>
     </div>
     <div class="thumbnail thumbanail-scroll container-fluid" >
-        <div class="nail px-2 py-4 ms-3" v-for="(thumb, index) in store.cardList" :key="index">
+        <div class="nail px-2 py-4 ms-3" v-for="(thumb, index) in store.cardList" :key="index" @click="getInfoCard(index)">
             <img :src="store.baseUrlImage + store.wImg + thumb.poster_path" alt="" :class="{active: currentIndex === index}" @mouseover="stopScroll">
         </div>
     </div>
@@ -49,7 +49,12 @@ import {store} from '../data/store.js';
             stopScroll() {
                 clearInterval(this.autoscroll);
                 this.isPaused = true;
-            }
+            },
+            getInfoCard(index) {
+                store.selected.splice(0, 1)
+                store.selected.push(store.cardList[index])
+                console.log(store.selected);
+                }
         },
         mounted() {
             this.startScroll();
@@ -68,13 +73,14 @@ span{
     color: white;
     position: absolute;
     top: -38px;
-    left: 20px;
+    left: 870px;
     z-index: 3;
     background-color: red;
     padding: 10px;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.9rem;
+    border-radius: 16px;
 }
 .thumbnail{
     height: 400px;
@@ -90,6 +96,14 @@ span{
     width: 100%;
     display: flex;
     flex-direction: row;
+    z-index: 5;
+    &:hover img{
+        border-radius: 10px;
+        opacity:1;
+        scale: 1.1;
+        border: 1px solid white;
+        cursor: pointer;
+    }
 }
 .box-arrow{
     height: 100px;
@@ -112,8 +126,9 @@ span{
     border-radius: 10px;
     opacity:1;
     scale: 1.1;
+    border: 1px solid white;
 }
 .nail img{
-    opacity: 40%;
+    opacity: 80%;
 }
 </style>

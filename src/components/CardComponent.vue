@@ -17,8 +17,7 @@
                     <div class="box-star ms-2 d-flex align-items-center">
                         <img :src="card.vote_average" alt="">
                     </div>
-                </div>
-                
+                </div>   
             </div>
         </div>
     </div>
@@ -64,5 +63,14 @@ import {store} from '../data/store.js';
             height: 100%;
             object-fit: cover;
         };
+    }
+    .canvas{
+        background-color: rgb(255, 255, 255);
+        height: 90vh;
+        width: 40vw;
+        position: fixed;
+        top: 50px;
+        z-index: 4;
+        
     }
 </style>

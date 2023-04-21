@@ -1,10 +1,10 @@
 <template>
     <div class="title-section">
-        <span>Most Popular Tv</span>
+        <span>top rated movie</span>
     </div>
     <div class="slider" @mouseover="stopScroll" @mouseleave="startScroll">
         <div class="thumbnail thumbanail-scroll container-fluid" >
-            <div class="nail px-2 py-4 ms-3" v-for="(thumb, index) in store.popularTv" :key="index" @click="getInfoCard(index)">
+            <div class="nail px-2 py-4 ms-3" v-for="(thumb, index) in store.topMovie" :key="index" @click="getInfoCard(index)">
                 <img :src="store.baseUrlImage + store.wImg + thumb.poster_path" alt="" :class="{active: currentIndex === index}" @mouseover="stopScroll">
             </div>
         </div>
@@ -17,15 +17,15 @@
             <div class="arrow next d-flex justify-content-center align-items-center" @click="nextSlide">
                 <i class="fa-solid fa-chevron-right fs-3"></i>
             </div>
-        </div>
+        </div>   
     </div>
-    
+
 </template>
 
 <script>
 import {store} from '../data/store.js';
     export default {
-        name: 'SliderPopularTv',
+        name: 'SliderTopRatedMovie',
         props: ['thumb'],
         data() {
             return {
@@ -40,11 +40,11 @@ import {store} from '../data/store.js';
                 this.currentIndex = this.currentIndex > 5 ? 0 : this.currentIndex + 1;
             },
             prevSlide() {
-                this.currentIndex === 0 ? this.currentIndex = store.popularTv.length - 1 : this.currentIndex--;
+                this.currentIndex === 0 ? this.currentIndex = store.topMovie.length - 1 : this.currentIndex--;
             },   
             startScroll() {
                 this.autoscroll = setInterval(() => {
-                    this.currentIndex = (this.currentIndex + 1) % store.popularTv.length;
+                    this.currentIndex = (this.currentIndex + 1) % store.topMovie.length;
                     if (this.currentIndex > 6) {
                         this.currentIndex = 0;
                     }
@@ -56,7 +56,7 @@ import {store} from '../data/store.js';
             },
             getInfoCard(index) {
                 store.selected.splice(0, 1)
-                store.selected.push(store.popularTv[index])
+                store.selected.push(store.topMovie[index])
                 console.log(store.selected);
                 }
         },

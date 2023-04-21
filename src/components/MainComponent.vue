@@ -1,16 +1,26 @@
 <template>
     <main>
         <div class="container-fluid">
-            <div class="popular" v-if="!store.research">
+            <div class="home-page" v-if="!store.research">
                 <div class="row popular-movie d-flex flex-wrap">
-                    <!-- <SliderComponent /> GOOD IDEA BUT NOT WORK (FIX REQUIRED)--> 
-                    <SliderComponent2 />
+                    <SliderComponent />
+                    <!-- <SliderComponent2 /> -->
                 </div>
                 <div class="row popular-tv d-flex flex-wrap">
-                    <!-- <SliderComponent /> GOOD IDEA BUT NOT WORK (FIX REQUIRED)--> 
+                    <!-- <SliderComponent /> --> 
                     <SliderPopularTv />
                 </div>
+                <div class="row top-rated-movie d-flex flex-wrap">
+                    <!-- <SliderComponent /> --> 
+                    <SliderTopRatedMovie />
+                </div>
+
+                <div class="card-info d-flex justify-content-center align-items-center">
+                    <CardInfo />
+                </div>
             </div>
+
+
             <div class="movie" v-if="store.research">
                 <h1>Film</h1>
                 <div class="row d-flex flex-wrap mt-2">
@@ -33,13 +43,17 @@ import CardComponent from './CardComponent.vue';
 import SliderComponent from './SliderComponent.vue';
 import SliderComponent2 from './SliderComponent2.vue';
 import SliderPopularTv from './SliderPopularTv.vue';
+import SliderTopRatedMovie from './SliderTopRatedMovie.vue';
+import CardInfo from './CardInfo.vue';
     export default {
         name: 'MainComponent',
         components: {
             CardComponent,
             SliderComponent,
             SliderComponent2,
-            SliderPopularTv
+            SliderPopularTv,
+            SliderTopRatedMovie,
+            CardInfo
         },
         data() {
             return {
@@ -50,10 +64,12 @@ import SliderPopularTv from './SliderPopularTv.vue';
 </script>
 
 <style lang="scss" scoped>
-    .popular{
+    .home-page{
         .row{
+            margin-bottom: 100px;
+        }
+        .popular-movie{
             margin-top: 100px;
-            margin-bottom: 250px;
-        } 
+        }
     }
 </style>
