@@ -49,7 +49,7 @@
     position: relative;
 }
 video{
-    margin-top: -140px;
+    margin-top:-50px;
     z-index: -1;
 }
 #myVideo {
